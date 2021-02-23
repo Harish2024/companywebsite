@@ -1,4 +1,4 @@
-"""companywebsite URL Configuration
+"""companywebsitedynamic URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.1/topics/http/urls/
@@ -15,15 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from website import views
+from website import views 
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home , name='home'),
+    path('', views.home , name='base'),
     path('home/', views.home , name='home'),
-    path('products/', views.products , name='home'),
-    path('people/',views.people ,name='home'),
-    path('contact/', views.contact ,name='home')
-]
-
-
+    path('product/', views.products , name='prouct'),
+    path('people/', views.peoples , name='people'),
+    path('contact/', views.contact , name='contact us'),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
